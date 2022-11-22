@@ -86,7 +86,7 @@
             <button type="button" class="btn btn-default">로그인</button>
           </div>
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default">회원가입</button>
+            <button type="button" class="btn btn-default" onclick="memberJoin()">회원가입</button>
           </div>
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default">pw 찾기</button>
@@ -202,4 +202,9 @@
 </div>
 
 </body>
+<script>
+  const memberJoin = () => {
+    location.href = "/memberJoin"
+  }
+</script>
 </html>
