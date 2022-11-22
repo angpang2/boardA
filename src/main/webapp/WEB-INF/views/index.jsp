@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -70,6 +71,8 @@
 
   <div class="right1">
     <!-- 로그인창 -->
+    <c:choose>
+      <c:when test="${sessionScope.member.member_id == null}">
     <div class="panel panel-default">
       <div class="panel-heading" style="text-align: center">로그인</div>
       <div class="panel-body">
@@ -95,6 +98,37 @@
       </div>
     </div>
   </div>
+      </c:when>
+      <c:otherwise>
+  <div class="panel panel-default">
+    <div class="panel-heading" style="text-align: center">로그인</div>
+    <div class="panel-body">
+      <form action="login.php" method="post">
+        <div class="form-group has-success">
+          <div class="Ellipse">
+            <c:if test="${sessionScope.member.profile != null}">
+              <img src="${pageContext.request.contextPath}/upload/${sessionScope.member.profile}"
+                   alt="" width="50" height="50">
+            </c:if>
+          </div>
+          <h4>${sessionScope.member.member_id}님 환영합니다</h4>
+        </div>
+      </form>
+      <!-- 로그인 회원가입 비밀번호 찾기 버튼 -->
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" onclick="logout()">로그아웃</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" onclick="memberJoin()">마이페이지</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </c:otherwise>
+    </c:choose>
 
 
   <div class="right2"></div>
@@ -199,6 +233,7 @@
       <option value="조회순">조회순</option>
     </select>
   </div>
+
 </div>
 
 </body>
@@ -221,6 +256,7 @@
       success : function (result){
         if(result == "ok"){
           alert("로그인성공")
+          location.href = "/";
         }else{
           alert("아이디 또는 비밀번호를 다시 확인해주세요")
         }
@@ -233,6 +269,13 @@
     })
 
   }
+
+const logout = () => {
+    if(confirm("로그아웃 하시겠습니까?")){
+      alert("로그아웃 되었습니다")
+      location.href = "/logout"
+    }
+}
 
 
 </script>
