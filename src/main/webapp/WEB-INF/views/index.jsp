@@ -120,7 +120,7 @@
           <button type="button" class="btn btn-default" onclick="logout()">로그아웃</button>
         </div>
         <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default" onclick="memberJoin()">마이페이지</button>
+          <button type="button" class="btn btn-default" onclick="mypage()">마이페이지</button>
         </div>
       </div>
     </div>
@@ -275,6 +275,10 @@ const logout = () => {
       alert("로그아웃 되었습니다")
       location.href = "/logout"
     }
+}
+
+const mypage = () => {
+  location.href = "/mypage"
 }
 
 

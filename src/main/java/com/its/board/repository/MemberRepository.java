@@ -29,4 +29,8 @@ public class MemberRepository {
         member.put("pw",pw);
         return sql.selectOne("Member.memberLogin",member);
     }
+
+    public void update(MemberDTO memberDTO) {
+        sql.update("Member.update",memberDTO);
+    }
 }

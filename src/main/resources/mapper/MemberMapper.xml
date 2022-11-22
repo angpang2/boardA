@@ -18,6 +18,9 @@
         select * from member where member_id=#{member_id} and pw=#{pw};
     </select>
 
+    <update id="update" parameterType="member">
+        update member set memberName = #{memberName} , pw = #{pw} where id = #{id}
+    </update>
 
 
 </mapper>

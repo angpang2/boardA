@@ -35,4 +35,8 @@ public class MemberService {
     public MemberDTO memberLogin(String member_id, String pw) {
         return memberRepository.memberLogin(member_id,pw);
     }
+
+    public void update(MemberDTO memberDTO) {
+        memberRepository.update(memberDTO);
+    }
 }
