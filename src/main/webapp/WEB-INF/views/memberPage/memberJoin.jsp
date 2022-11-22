@@ -21,28 +21,29 @@
 <header id="header">
   <h1 class="tit">회원가입</h1>
 </header>
-<form name="join" onsubmit="return validate();" action="https://www.naver.com/" method="post" enctype="multipart/form-data" >
+<form name="join" onsubmit="return validate();" action="/memberJoin" method="post" enctype="multipart/form-data" >
   <fieldset>
     <div>
       <label for="uid">프로필 등록</label>
-      <input type="file" class="form-control">
+      <input type="file" class="form-control" name="memberFile">
     </div>
     <div class="id-container">
       <label for="uid">아이디</label>
-      <input type="text" class="width-450 form-control" name="userId" id="uid" required minlength="5" maxlength="20">
+      <input type="text" class="width-450 form-control" name="member_id" id="uid" required minlength="5" maxlength="20">
+      <input type="button" name="checkId" onclick="check_id()" value="이메일 중복확인">
       <span id="idError"></span>
     </div>
     <div class="password-container">
       <label for="pwd">비밀번호</label>
-      <input type="password" class="width-450 form-control" name="password01" id="pwd" required minlength="8" maxlength="16">
+      <input type="password" class="width-450 form-control" name="pw" id="pwd" required minlength="8" maxlength="16">
       <span id="pwdError"></span>
       <label for="repwd">비밀번호 확인</label>
-      <input type="password" class="width-450 form-control" name="password02" id="repwd" required minlength="8" maxlength="16">
+      <input type="password" class="width-450 form-control" name="pw2" id="repwd" required minlength="8" maxlength="16">
       <span id="rePwderror"></span>
     </div>
     <div class=name-container>
       <label for="uname">이름</label>
-      <input type="text" class="width-450 form-control" name="name" id="uname" required minlength="2" maxlength="4">
+      <input type="text" class="width-450 form-control" name="memberName" id="uname" required minlength="2" maxlength="4">
       <span id="nameError"></span>
       </span>
     </div>
@@ -57,7 +58,7 @@
     </div>
     <div class="btn-container">
       <input type="reset" value="다시입력" class="width-half height-30 form-control form-group group btn-group btn btn-warning">
-      <button type="submit" id="joinBtn" class="width-half height-30 form-control form-group group btn-group btn btn-success" name="join" disabled="">회원가입</button>
+      <button type="submit" id="joinBtn" class="width-half height-30 form-control form-group group btn-group btn btn-success" name="join" disabled>회원가입</button>
     </div>
   </fieldset>
 </form>
@@ -69,13 +70,8 @@
   let pwdToken = false
   let rePwdToken = false
   let nameToken = false
-  let yearToken = false
-  let dayToken = false
-  let mailToken = false
   let target = document.getElementById('joinBtn');
-  let tokenType = idToken && pwdToken && rePwdToken && nameToken && yearToken && dayToken && mailToken
-
-
+  let tokenType = idToken && pwdToken && rePwdToken && nameToken;
 
   function validate() {
 
@@ -134,28 +130,37 @@
         document.getElementById('nameError').style.color = 'green'
         nameToken = true;
       }
-    };
-
-// console.log(typeof tokenType === true)
-// console.log(typeof tokenType == true)
-
-//     if (tokenType === true) {
-//         target.disabled = false;
-//     } else {
-//         target.disabled = true;
-//     }
-
-//     switch (tokenType === true) {
-//         case 'true':
-//             target.disabled = false;
-//             break;
-
-//         case 'false':
-//             target.disabled = true;
-//             break;
-//     }
-
+    }
   };
   validate();
+
+  const check_id = () => {
+    const member_id = document.getElementById("uid").value;
+    $.ajax({
+      type: "get",
+      url: "/id_check",
+      data: {
+        value1: member_id
+      },
+      dataType: "text",
+      success: function (result) {
+        console.log("성공");
+        console.log(result);
+        if (result == "yes") {
+          $("#joinBtn").removeAttr("disabled");
+          alert("회원가입가능")
+
+        } else {
+          $("#joinBtn").attr("disabled", "disabled");
+          alert("이미존재하는 이메일 입니다.")
+        }
+      },
+      error: function () {
+        console.log("실패")
+      }
+
+    })
+
+  }
 </script>
 </html>

@@ -4,6 +4,15 @@
 
 
 <mapper namespace="Member">
+<insert id="memberJoin" parameterType="member">
+    insert into member (member_id,memberName,pw,profile,gender)
+    values (#{member_id},#{memberName},#{pw},#{profile},#{gender});
+</insert>
+
+
+    <select id="checkId" parameterType="String" resultType="member">
+        select * from member where member_id=#{member_id};
+    </select>
 
 
 
