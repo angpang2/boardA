@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -34,4 +35,21 @@ public class MemberController {
             return "no";
         }
     }
+
+    @PostMapping("memberLogin")
+    public @ResponseBody String memberLogin(@RequestParam("member_id")String member_id
+    , @RequestParam("pw")String pw, HttpSession session){
+        System.out.println("member_id = " + member_id + ", pw = " + pw);
+        MemberDTO result = memberService.memberLogin(member_id,pw);
+        if(result!=null){
+            session.setAttribute("member",result);
+            return "ok";
+        }else {
+            return "no";
+        }
+
+    }
+
+
+
 }

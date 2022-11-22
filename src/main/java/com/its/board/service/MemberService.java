@@ -31,4 +31,8 @@ public class MemberService {
     public MemberDTO check_id(String member_id) {
         return memberRepository.id_check(member_id);
     }
+
+    public MemberDTO memberLogin(String member_id, String pw) {
+        return memberRepository.memberLogin(member_id,pw);
+    }
 }

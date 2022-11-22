@@ -5,6 +5,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Repository
 public class MemberRepository {
     @Autowired
@@ -18,5 +21,12 @@ public class MemberRepository {
         MemberDTO result = sql.selectOne("Member.checkId",member_id);
         System.out.println("result = " + result);
         return result;
+    }
+
+    public MemberDTO memberLogin(String member_id, String pw) {
+        Map<String,String>member = new HashMap<>();
+        member.put("member_id",member_id);
+        member.put("pw",pw);
+        return sql.selectOne("Member.memberLogin",member);
     }
 }

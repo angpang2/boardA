@@ -76,14 +76,14 @@
         <form action="login.php" method="post">
           <div class="form-group has-success">
             <input type="text" class="form-control" id="inputSuccess1" name="id" placeholder="아이디">
-            <input type="password" class="form-control" id="inputSuccess1" name="pw" placeholder="비밀번호">
+            <input type="password" class="form-control" id="inputSuccess2" name="pw" placeholder="비밀번호">
 
           </div>
         </form>
         <!-- 로그인 회원가입 비밀번호 찾기 버튼 -->
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default">로그인</button>
+            <button type="button" class="btn btn-default" onclick="memberLogin()">로그인</button>
           </div>
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default" onclick="memberJoin()">회원가입</button>
@@ -206,5 +206,34 @@
   const memberJoin = () => {
     location.href = "/memberJoin"
   }
+
+  const memberLogin = () => {
+    const member_id = document.getElementById("inputSuccess1").value;
+    const pw = document.getElementById("inputSuccess2").value;
+    $.ajax({
+      type:"post",
+      url:"/memberLogin",
+      data: {
+        member_id: member_id,
+        pw: pw,
+      },
+      dataType:"text",
+      success : function (result){
+        if(result == "ok"){
+          alert("로그인성공")
+        }else{
+          alert("아이디 또는 비밀번호를 다시 확인해주세요")
+        }
+      },
+      error : function (){
+        alert("아이디 또는 비밀번호를 다시 확인해주세요")
+      }
+
+
+    })
+
+  }
+
+
 </script>
 </html>
