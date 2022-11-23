@@ -1,6 +1,7 @@
 package com.its.board.service;
 
 import com.its.board.dto.BoardDTO;
+import com.its.board.dto.PageDTO;
 import com.its.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,4 +37,46 @@ public class BoardService {
             boardRepository.boardSave(boardDTO);
         }
     }
+
+
+    public List<BoardDTO> boardList(BoardDTO boardDTO) {
+        int page = boardDTO.getPage();
+        int start = (page-1)* boardDTO.getPAGE_LIMIT();
+        int limit = boardDTO.getPAGE_LIMIT();
+        boardDTO.setStart(start);
+        boardDTO.setPAGE_LIMIT(limit);
+        return boardRepository.boardList(boardDTO);
+    }
+
+    public List<BoardDTO> HomeList(BoardDTO boardDTO) {
+        int page = boardDTO.getPage();
+        int start = (page-1)* boardDTO.getPAGE_LIMIT();
+        int limit = boardDTO.getPAGE_LIMIT();
+        boardDTO.setStart(start);
+        boardDTO.setPAGE_LIMIT(limit);
+        return boardRepository.HomeList(boardDTO);
+    }
+
+    public BoardDTO boardPage(BoardDTO boardDTO) {
+        //전체 글 갯수 조회
+        int boardCount = boardRepository.boardCount();
+        //필요 페이지 계산
+        int maxPage = (int)(Math.ceil((double)boardCount / boardDTO.getPAGE_LIMIT()));
+        //시작 페이지 값 계산
+        int startPage = (((int)(Math.ceil((double) boardDTO.getPage() / boardDTO.getBLOCK_LIMIT()))) - 1) * boardDTO.getBLOCK_LIMIT() + 1;
+        //끝 페이지 값 계산
+        int endPage = startPage + boardDTO.getBLOCK_LIMIT() - 1;
+        if(endPage>maxPage){
+            endPage = maxPage;
+        }
+        boardDTO.setMaxPage(maxPage);
+        boardDTO.setEndPage(endPage);
+        boardDTO.setStartPage(startPage);
+        return boardDTO;
+    }
+
+
+
+
+
 }

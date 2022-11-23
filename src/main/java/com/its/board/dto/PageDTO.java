@@ -7,7 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class pageDTO {
+public class PageDTO {
     private int page = 1; //현재 페이지
     private int maxPage; //필요 페이지
     private int startPage; // 시작 페이지

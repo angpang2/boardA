@@ -26,4 +26,17 @@ public class BoardRepository {
 
         return sql.selectOne("Board.boarsSelect",boardDTO);
     }
+
+
+    public List<BoardDTO> boardList(BoardDTO boardDTO) {
+        return sql.selectList("Board.boardList",boardDTO);
+    }
+
+    public List<BoardDTO> HomeList(BoardDTO boardDTO) {
+        return sql.selectList("Board.boardList",boardDTO);
+    }
+
+    public int boardCount() {
+        return sql.selectOne("Board.boardCount");
+    }
 }
