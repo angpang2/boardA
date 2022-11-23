@@ -154,7 +154,7 @@
 <c:forEach items="${boardList}" var="board">
           <tr>
             <td>${board.board_id}</td>
-            <td>${board.title}</td>
+            <td><a href="/boardDetail?board_id=${board.board_id}">${board.title}</a></td>
             <td>${board.writer}</td>
             <td>${board.regdate}</td>
             <td>1</td>

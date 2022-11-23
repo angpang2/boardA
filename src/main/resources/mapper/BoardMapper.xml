@@ -22,6 +22,10 @@
         select count(board_id) from board;
     </select>
 
+    <select id="boardDetail" parameterType="board" resultType="board">
+        select * from board where board_id = #{board_id}
+    </select>
+
 
 
 </mapper>

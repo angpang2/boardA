@@ -1,6 +1,7 @@
 package com.its.board.controller;
 
 import com.its.board.dto.BoardDTO;
+import com.its.board.dto.MemberDTO;
 import com.its.board.dto.PageDTO;
 import com.its.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,13 @@ public class BoardController {
         model.addAttribute("paging",boardDTO1);
 
         return "board/index";
+    }
+
+    @GetMapping("boardDetail")
+    public String boardDetail(@ModelAttribute BoardDTO boardDTO,Model model){
+        BoardDTO boardDTO1 = boardService.boardDetail(boardDTO);
+        model.addAttribute("board",boardDTO1);
+        return "board/detail";
     }
 
 

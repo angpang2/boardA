@@ -76,7 +76,7 @@ public class BoardService {
     }
 
 
-
-
-
+    public BoardDTO boardDetail(BoardDTO boardDTO) {
+        return boardRepository.boardDetail(boardDTO);
+    }
 }
