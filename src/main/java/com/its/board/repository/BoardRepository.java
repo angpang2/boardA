@@ -69,6 +69,7 @@ public class BoardRepository {
     }
 
 
-
-
+    public void boardClick(BoardDTO boardDTO) {
+        sql.update("Board.boardClick",boardDTO);
+    }
 }

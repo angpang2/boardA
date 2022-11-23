@@ -157,7 +157,7 @@
             <td><a href="/boardDetail?board_id=${board.board_id}">${board.title}[${board.commentCount}]</a></td>
             <td>${board.writer}</td>
             <td>${board.regdate}</td>
-            <td>1</td>
+            <td>${board.hit}</td>
           </tr>
 </c:forEach>
           </tbody>

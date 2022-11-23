@@ -104,9 +104,7 @@ public class BoardService {
     }
 
 
-
-
-
-
-
+    public void boardClick(BoardDTO boardDTO) {
+        boardRepository.boardClick(boardDTO);
+    }
 }

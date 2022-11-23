@@ -45,6 +45,8 @@ public class BoardController {
     public String boardDetail(@ModelAttribute BoardDTO boardDTO,Model model) {
         BoardDTO boardDTO1 = boardService.boardDetail(boardDTO);
         model.addAttribute("board", boardDTO1);
+        //조회수 올리기
+        boardService.boardClick(boardDTO);
         //댓글 있으면 가져오기
         Long board_id = boardDTO.getBoard_id();
         List<CommentDTO> commentDTOList = boardService.commentList(board_id);

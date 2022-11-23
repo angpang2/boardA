@@ -46,6 +46,10 @@
         select * from comment where board_id = #{board_id} order by comment_id desc
     </select>
 
+    <update id="boardClick" parameterType="board">
+        update board set hit = hit+1 where board_id = #{board_id}
+    </update>
+
 
 
 
