@@ -62,7 +62,7 @@
     <!-- 사이드바 -->
     <div class="list-group">
       <a href="#" class="list-group-item active">선택창</a>
-      <a href="#" class="list-group-item">메뉴1</a>
+      <a href="/index" class="list-group-item">메뉴1</a>
       <a href="#" class="list-group-item">메뉴2</a>
       <a href="#" class="list-group-item">메뉴3</a>
 
@@ -256,7 +256,7 @@
       success : function (result){
         if(result == "ok"){
           alert("로그인성공")
-          location.href = "/";
+          location.href = "../../..";
         }else{
           alert("아이디 또는 비밀번호를 다시 확인해주세요")
         }

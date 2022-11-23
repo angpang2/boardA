@@ -106,9 +106,53 @@
 
     }
 
+    const memberJoin = () => {
+        location.href = "/memberJoin"
+    }
+
+    const memberLogin = () => {
+        const member_id = document.getElementById("inputSuccess1").value;
+        const pw = document.getElementById("inputSuccess2").value;
+        $.ajax({
+            type:"post",
+            url:"/memberLogin",
+            data: {
+                member_id: member_id,
+                pw: pw,
+            },
+            dataType:"text",
+            success : function (result){
+                if(result == "ok"){
+                    alert("로그인성공")
+                    location.href = "../../..";
+                }else{
+                    alert("아이디 또는 비밀번호를 다시 확인해주세요")
+                }
+            },
+            error : function (){
+                alert("아이디 또는 비밀번호를 다시 확인해주세요")
+            }
+
+
+        })
+
+    }
+
+    const logout = () => {
+        if(confirm("로그아웃 하시겠습니까?")){
+            alert("로그아웃 되었습니다")
+            location.href = "/logout"
+        }
+    }
+
+    const mypage = () => {
+        location.href = "/mypage"
+    }
+
 
 
 
 </script>
+
 
 </html>
