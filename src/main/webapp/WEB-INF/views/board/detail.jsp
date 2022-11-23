@@ -23,72 +23,39 @@
 
 <div class="main">
     <div class="container" id="save-form">
-        작성자  <input type="text" name="writer"  class="form-control" value="${board.writer}" readonly >
-        제목  <input type="text" name="title"  class="form-control" value="${board.title}" readonly>
-        내용   <textarea name="content" cols="30" rows="10" class="form-control" readonly>${board.content}</textarea>
-        <c:if test="${board.boardSaveFile != null}">
-            <img src="${pageContext.request.contextPath}/upload/${board.boardSaveFile}"
-                 alt="" width="50" height="50">
-        </c:if>
-        <c:if test="${sessionScope.member.id == board.member_id}">
-            <input type="button" value="수정하기" onclick="modify()">
-            <input type="button" value="삭제하기" onclick="boardDelete()">
-        </c:if>
+        <form action="/boardUpdate" method="post">
+            <input type="hidden" name="board_id" value="${board.board_id}">
+        작성자  <input type="text" name="writer"  class="form-control" value="${board.writer}" readonly>
+        제목  <input type="text" name="title"  class="form-control" value="${board.title}" readonly id="title2">
+        내용   <textarea name="content" cols="30" rows="10" class="form-control" readonly id="content2">${board.content}</textarea>
+            <c:if test="${sessionScope.member.id == board.member_id}">
+                <div id="input2">
+                    <input type="button" onclick="boardUpdate()" value="수정">
+                    <input type="button" value="삭제하기" onclick="boardDelete()">
+                    <c:if test="${board.boardSaveFile != null}">
+                        <img src="${pageContext.request.contextPath}/upload/${board.boardSaveFile}"
+                             alt="" width="50" height="50">
+                    </c:if>
+                    </c:if>
+                </div>
+        </form>
+
     </div>
 </div>
 
 </body>
 <script>
-    const memberJoin = () => {
-        location.href = "/memberJoin"
-    }
 
-    const memberLogin = () => {
-        const member_id = document.getElementById("inputSuccess1").value;
-        const pw = document.getElementById("inputSuccess2").value;
-        $.ajax({
-            type:"post",
-            url:"/memberLogin",
-            data: {
-                member_id: member_id,
-                pw: pw,
-            },
-            dataType:"text",
-            success : function (result){
-                if(result == "ok"){
-                    alert("로그인성공")
-                    location.href = "../../..";
-                }else{
-                    alert("아이디 또는 비밀번호를 다시 확인해주세요")
-                }
-            },
-            error : function (){
-                alert("아이디 또는 비밀번호를 다시 확인해주세요")
-            }
+  const boardUpdate = () => {
+          console.log("호출성공")
+       $("#title2").removeAttr("readonly");       // readonly 삭제
+      $("#content2").removeAttr("readonly");       // readonly 삭제
+      const a = document.getElementById("input2")
+      a.innerHTML = "";
+      // const sub = document.getElementById("sub3");
+      a.innerHTML = "<input type='submit' value='수정완료' class='btn btn-success' style='border-left: 105px;margin-left: 105px;'>"
+  }
 
-
-        })
-
-    }
-
-    const logout = () => {
-        if(confirm("로그아웃 하시겠습니까?")){
-            alert("로그아웃 되었습니다")
-            location.href = "/logout"
-        }
-    }
-
-    const mypage = () => {
-        location.href = "/mypage"
-    }
-
-    const modify = () => {
-        location.href = "/updateForm?board_id="+${board.board_id}
-    }
-
-    const boardDelete = () => {
-        location.href = "/board/delete?board_id="+${board.board_id}
-    }
 
 
 </script>

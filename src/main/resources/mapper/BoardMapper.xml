@@ -26,6 +26,16 @@
         select * from board where board_id = #{board_id}
     </select>
 
+    <update id="update" parameterType="board">
+        update board set title = #{title} , content=#{content} where board_id=#{board_id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from board where board_id = #{board_id}
+    </delete>
+
+
+
 
 
 </mapper>

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,6 +48,20 @@ public class BoardController {
         BoardDTO boardDTO1 = boardService.boardDetail(boardDTO);
         model.addAttribute("board",boardDTO1);
         return "board/detail";
+    }
+
+   @PostMapping("/boardUpdate")
+    public String boardUpdate(@ModelAttribute BoardDTO boardDTO){
+        System.out.println("boardDTO = " + boardDTO);
+        boardService.boardUpdate(boardDTO);
+        return "redirect:/index";
+    }
+
+    @GetMapping("/board/delete")
+    public String boardDelete(@RequestParam("board_id")Long board_id){
+        System.out.println("board_id = " + board_id);
+        boardService.boardDelete(board_id);
+        return "redirect:/index";
     }
 
 

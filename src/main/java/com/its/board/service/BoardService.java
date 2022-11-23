@@ -79,4 +79,18 @@ public class BoardService {
     public BoardDTO boardDetail(BoardDTO boardDTO) {
         return boardRepository.boardDetail(boardDTO);
     }
+
+    public void boardUpdate(BoardDTO boardDTO) {
+        boardRepository.boardUpdate(boardDTO);
+    }
+
+    public void boardDelete(Long board_id) {
+        boardRepository.boardDelete(board_id);
+    }
+
+
+
+
+
+
 }

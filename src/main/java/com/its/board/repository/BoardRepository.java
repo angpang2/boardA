@@ -43,4 +43,17 @@ public class BoardRepository {
     public BoardDTO boardDetail(BoardDTO boardDTO) {
         return sql.selectOne("Board.boardDetail",boardDTO);
     }
+
+    public void boardUpdate(BoardDTO boardDTO) {
+        sql.update("Board.update",boardDTO);
+    }
+
+    public void boardDelete(Long board_id) {
+        System.out.println("리파지토리board_id = " + board_id);
+        sql.delete("Board.delete",board_id);
+    }
+
+
+
+
 }
