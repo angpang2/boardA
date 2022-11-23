@@ -62,7 +62,6 @@
                 <tr>
                     <td>${comment.writer}</td>
                     <td>${comment.content}</td>
-                    <td>${comment.regdate}</td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${comment.regdate}"></fmt:formatDate></td>
                 </tr>
             </c:forEach>
@@ -103,7 +102,7 @@
               dataType: "json",
               success: function (commentList) {
                   console.log(commentList);
-                  let output = "<table class='table'>";
+                  let output = "<table class='table' style='text-align: center'>";
                   output += "<th>작성자</th>";
                   output += "<th>내용</th>";
                   output += "<th>작성시간</th></tr>";
@@ -116,7 +115,6 @@
                   }
                   output += "</table>";
                   document.getElementById('comment-list').innerHTML = output;
-                  document.getElementById('commentWriter').value='';
                   document.getElementById('commentContents').value='';
               },
               error: function () {
