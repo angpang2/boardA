@@ -14,7 +14,7 @@ public class BoardDTO {
     private MultipartFile boardFile;
     private String originalFileName;
     private String storedFileName;
-    private String boardSaveFile;
+    private String boardSaveFile = null;
     private Long board_id;
     private String writer;
     private String title;

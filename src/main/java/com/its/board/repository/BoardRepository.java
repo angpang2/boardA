@@ -13,7 +13,17 @@ public class BoardRepository {
     private SqlSessionTemplate sql;
 
 
-    public void boardSave(BoardDTO boardDTO) {
+    public BoardDTO boardSave(BoardDTO boardDTO) {
         sql.insert("Board.boardSave",boardDTO);
+        return boardDTO;
+    }
+
+    public void boardSaveDB(BoardDTO boardDTO) {
+        sql.insert("Board.boardSaveDB",boardDTO);
+    }
+
+    public BoardDTO boardSelect(BoardDTO boardDTO) {
+
+        return sql.selectOne("Board.boarsSelect",boardDTO);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -25,7 +26,7 @@ public class BoardController {
     }
 
     @PostMapping("/board/save")
-    public String boardSave(@ModelAttribute BoardDTO boardDTO, Model model){
+    public String boardSave(@ModelAttribute BoardDTO boardDTO, Model model) throws IOException {
         boardService.boardSave(boardDTO);
         return "board/index";
     }
