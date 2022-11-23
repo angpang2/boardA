@@ -1,6 +1,7 @@
 package com.its.board.service;
 
 import com.its.board.dto.BoardDTO;
+import com.its.board.dto.CommentDTO;
 import com.its.board.dto.PageDTO;
 import com.its.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,21 @@ public class BoardService {
     public void boardDelete(Long board_id) {
         boardRepository.boardDelete(board_id);
     }
+
+    public void commentSave(CommentDTO commentDTO) {
+        boardRepository.commentSave(commentDTO);
+
+    }
+    public void commentCountUp(Long board_id) {
+        boardRepository.commentCountUp(board_id);
+
+    }
+
+    public List<CommentDTO> commentList(Long board_id) {
+        return boardRepository.commentList(board_id);
+
+    }
+
 
 
 

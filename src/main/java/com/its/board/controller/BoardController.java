@@ -1,16 +1,14 @@
 package com.its.board.controller;
 
 import com.its.board.dto.BoardDTO;
+import com.its.board.dto.CommentDTO;
 import com.its.board.dto.MemberDTO;
 import com.its.board.dto.PageDTO;
 import com.its.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -44,9 +42,16 @@ public class BoardController {
     }
 
     @GetMapping("boardDetail")
-    public String boardDetail(@ModelAttribute BoardDTO boardDTO,Model model){
+    public String boardDetail(@ModelAttribute BoardDTO boardDTO,Model model) {
         BoardDTO boardDTO1 = boardService.boardDetail(boardDTO);
-        model.addAttribute("board",boardDTO1);
+        model.addAttribute("board", boardDTO1);
+        //댓글 있으면 가져오기
+        Long board_id = boardDTO.getBoard_id();
+        List<CommentDTO> commentDTOList = boardService.commentList(board_id);
+        if (commentDTOList != null) {
+            model.addAttribute("commentList", commentDTOList);
+            return "board/detail";
+        }
         return "board/detail";
     }
 
@@ -62,6 +67,33 @@ public class BoardController {
         System.out.println("board_id = " + board_id);
         boardService.boardDelete(board_id);
         return "redirect:/index";
+    }
+
+    @PostMapping("/comment/save")
+    //comment 저장하고 list로 가져오기
+    public @ResponseBody List<CommentDTO> commentSave2(@ModelAttribute CommentDTO commentDTO){
+        boardService.commentSave(commentDTO);
+        //board_id를 가지고 commentcount +1 시키기
+        Long board_id = commentDTO.getBoard_id();
+        System.out.printf("board_id = " + board_id);
+        boardService.commentCountUp(board_id);
+        //commenet list 가져오기
+        List<CommentDTO> commentDTOList = boardService.commentList(board_id);
+        return commentDTOList;
+    }
+
+    @PostMapping("/board/comment")
+    public @ResponseBody List<CommentDTO> commentSave(@ModelAttribute CommentDTO commentDTO){
+        boardService.commentSave(commentDTO);
+        //board_id를 가지고 commentcount +1 시키기
+        Long board_id = commentDTO.getBoard_id();
+        System.out.printf("board_id = " + board_id);
+        boardService.commentCountUp(board_id);
+        //commenet list 가져오기
+        List<CommentDTO> commentDTOList = boardService.commentList(board_id);
+
+
+        return commentDTOList;
     }
 
 

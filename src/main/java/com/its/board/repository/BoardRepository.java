@@ -1,6 +1,7 @@
 package com.its.board.repository;
 
 import com.its.board.dto.BoardDTO;
+import com.its.board.dto.CommentDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -51,6 +52,20 @@ public class BoardRepository {
     public void boardDelete(Long board_id) {
         System.out.println("리파지토리board_id = " + board_id);
         sql.delete("Board.delete",board_id);
+    }
+
+    public void commentSave(CommentDTO commentDTO) {
+        sql.insert("Board.commentSave",commentDTO);
+    }
+
+    public void commentCountUp(Long board_id) {
+        System.out.println("리파지토리board_id = " + board_id);
+        int result = sql.update("Board.up",board_id);
+        System.out.println("result = " + result);
+    }
+
+    public List<CommentDTO> commentList(Long board_id) {
+        return sql.selectList("Board.commentList",board_id);
     }
 
 

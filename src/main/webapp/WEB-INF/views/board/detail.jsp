@@ -15,6 +15,7 @@
 </head>
 <body>
 <<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 
 <div class="right2">
@@ -41,7 +42,36 @@
         </form>
 
     </div>
+    <%--댓글달기--%>
+    <div class="container" id="comment-form" style="width: 800px; margin-top: 10px;">
+        <input type="hidden" name="board_id" value="${board.board_id}">
+        <input type="hidden" name="member_id" value="${sessionScope.id}">
+        <input type="text" name="writer" value="${sessionScope.member.member_id}" id="commentWriter" readonly>
+        <input type="text" name="content" class="form-control" id="commentContents">
+        <input type="button" onclick="commentWrite()" value="댓글달기" class="btn btn-primary">
+    </div>
+    <%--댓글보기--%>
+    <div class="container" id="comment-list" style="width: 800px; margin-top: 10px;">
+        <table class="table">
+            <tr>
+                <th>작성자</th>
+                <th>내용</th>
+                <th>작성시간</th>
+            </tr>
+            <c:forEach items="${commentList}" var="comment">
+                <tr>
+                    <td>${comment.writer}</td>
+                    <td>${comment.content}</td>
+                    <td>${comment.regdate}</td>
+                    <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${comment.regdate}"></fmt:formatDate></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
 </div>
+
+</div>
+
 
 </body>
 <script>
@@ -54,6 +84,49 @@
       a.innerHTML = "";
       // const sub = document.getElementById("sub3");
       a.innerHTML = "<input type='submit' value='수정완료' class='btn btn-success' style='border-left: 105px;margin-left: 105px;'>"
+  }
+
+  const commentWrite = () => {
+      console.log("comment호출성공")
+      const content2 = document.getElementById("commentContents").value;
+      const board_id2 = '${board.board_id}';
+      if(${sessionScope.member.member_id != null}){
+          const writer2 = '${sessionScope.member.member_id}'
+          $.ajax({
+              type: "post",
+              url: "/comment/save",
+              data: {
+                  writer: writer2,
+                  content: content2,
+                  board_id: board_id2
+              },
+              dataType: "json",
+              success: function (commentList) {
+                  console.log(commentList);
+                  let output = "<table class='table'>";
+                  output += "<th>작성자</th>";
+                  output += "<th>내용</th>";
+                  output += "<th>작성시간</th></tr>";
+                  for(let i in commentList){
+                      output += "<tr>";
+                      output += "<td>"+commentList[i].writer+"</td>";
+                      output += "<td>"+commentList[i].content+"</td>";
+                      output += "<td>"+moment(commentList[i].regdate).format("YYYY-MM-DD HH:mm:ss")+"</td>";
+                      output += "</tr>";
+                  }
+                  output += "</table>";
+                  document.getElementById('comment-list').innerHTML = output;
+                  document.getElementById('commentWriter').value='';
+                  document.getElementById('commentContents').value='';
+              },
+              error: function () {
+                  console.log("실패");
+              }
+          })
+      }else {
+          alert("로그인후 이용 가능합니다.")
+          location.href="/login"
+      }
   }
 
 

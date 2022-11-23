@@ -34,6 +34,18 @@
         delete from board where board_id = #{board_id}
     </delete>
 
+    <insert id="commentSave" parameterType="comment">
+        insert into comment(content,board_id,member_id,writer)values(#{content},#{board_id},#{member_id},#{writer})
+    </insert>
+
+    <update id="up" parameterType="Long">
+        update board set commentcount=commentcount+1 where board_id = #{board_id}
+    </update>
+
+    <select id="commentList" resultType="comment" parameterType="Long">
+        select * from comment where board_id = #{board_id} order by comment_id desc
+    </select>
+
 
 
 
