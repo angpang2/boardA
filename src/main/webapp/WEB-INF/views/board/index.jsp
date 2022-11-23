@@ -218,7 +218,7 @@
     <!-- 글쓰기 버튼 -->
     <div class="writeButton btn-group btn-group-justified" role="group" aria-label="...">
       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default">글쓰기</button>
+        <button type="button" class="btn btn-default" onclick="boardWrite()">글쓰기</button>
       </div>
     </div>
 
@@ -238,6 +238,15 @@
 
 </body>
 <script>
+  const boardWrite = () => {
+    if(${sessionScope.member.member_id != null}){
+      location.href = "/boardWrite"
+    }else {
+      alert("로그인 후 이용바랍니다")
+    }
+  }
+
+
   const memberJoin = () => {
     location.href = "/memberJoin"
   }
