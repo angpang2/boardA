@@ -35,6 +35,14 @@
     </form>
   </div>
 
+  <!-- 정렬기준 선택창 -->
+  <div class="sort">
+    <select class="form-control">
+      <option value="최신순">최신순</option>
+      <option value="조회순">조회순</option>
+    </select>
+  </div>
+
 
 
 
@@ -225,7 +233,12 @@
   </div>
 
     <!-- 글쓰기 버튼 -->
-    <div class="writeButton btn-group btn-group-justified" role="group" aria-label="...">
+    <div class="writeButton btn-group btn-group-justified" role="group" aria-label="..." style="
+    top: 331px;
+    width: 250px;
+    left: 1218px;
+
+">
       <div class="btn-group" role="group">
         <button type="button" class="btn btn-default" onclick="boardWrite()">글쓰기</button>
       </div>
@@ -233,14 +246,6 @@
 
 
 
-  </div>
-
-  <!-- 정렬기준 선택창 -->
-  <div class="sort">
-    <select class="form-control">
-      <option value="최신순">최신순</option>
-      <option value="조회순">조회순</option>
-    </select>
   </div>
 
 </div>

@@ -20,6 +20,7 @@ public class BoardDTO {
     private String title;
     private String content;
     private int hit = 0;
+    private int boardLike = 0;
     private Timestamp regdate;
     private Timestamp updatedate;
     private Long member_id;

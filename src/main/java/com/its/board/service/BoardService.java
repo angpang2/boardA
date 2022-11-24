@@ -1,8 +1,8 @@
 package com.its.board.service;
 
 import com.its.board.dto.BoardDTO;
+import com.its.board.dto.BoardlikeDTO;
 import com.its.board.dto.CommentDTO;
-import com.its.board.dto.PageDTO;
 import com.its.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BoardService {
@@ -106,5 +107,15 @@ public class BoardService {
 
     public void boardClick(BoardDTO boardDTO) {
         boardRepository.boardClick(boardDTO);
+    }
+
+    public BoardDTO boardLike(Map<String, Long> boardLike) {
+       return boardRepository.boardLike(boardLike);
+
+    }
+
+
+    public BoardlikeDTO boardDu(Map<String, Long> boardLike) {
+        return boardRepository.likeDu(boardLike);
     }
 }

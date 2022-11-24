@@ -1,12 +1,14 @@
 package com.its.board.repository;
 
 import com.its.board.dto.BoardDTO;
+import com.its.board.dto.BoardlikeDTO;
 import com.its.board.dto.CommentDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class BoardRepository {
@@ -71,5 +73,20 @@ public class BoardRepository {
 
     public void boardClick(BoardDTO boardDTO) {
         sql.update("Board.boardClick",boardDTO);
+    }
+
+    public BoardDTO boardLike(Map<String, Long> boardLike) {
+        System.out.println("리파지토리board_id = " + boardLike);
+        sql.update("Board.boardLike",boardLike);
+        sql.insert("Board.boardLikeDB",boardLike);
+        return sql.selectOne("Board.boardOne",boardLike);
+
+    }
+
+    public BoardlikeDTO likeDu(Map<String, Long> boardLike) {
+        System.out.println("리파지토리 boardLike = " + boardLike);
+       BoardlikeDTO result = sql.selectOne("Board.likeDu",boardLike);
+        System.out.println("result값 = " + result);
+       return result;
     }
 }

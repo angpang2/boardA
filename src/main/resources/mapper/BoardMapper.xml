@@ -50,6 +50,22 @@
         update board set hit = hit+1 where board_id = #{board_id}
     </update>
 
+    <update id="boardLike" parameterType="java.util.HashMap">
+        update board set boardLike = boardLike+1 where board_id = #{board_id};
+    </update>
+
+    <select id="boardOne" parameterType="java.util.HashMap" resultType="board">
+        select * from board where board_id = #{board_id}
+    </select>
+
+    <insert id="boardLikeDB" parameterType="java.util.HashMap">
+        insert into boardLike (board_id,member_id)
+        values (#{board_id},#{member_id})
+    </insert>
+
+    <select id="likeDu" parameterType="java.util.HashMap" resultType="like">
+        select * from boardLike where board_id = #{board_id} and member_id = #{member_id}
+    </select>
 
 
 

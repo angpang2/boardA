@@ -1,9 +1,6 @@
 package com.its.board.controller;
 
-import com.its.board.dto.BoardDTO;
-import com.its.board.dto.CommentDTO;
-import com.its.board.dto.MemberDTO;
-import com.its.board.dto.PageDTO;
+import com.its.board.dto.*;
 import com.its.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class BoardController {
@@ -96,6 +95,32 @@ public class BoardController {
 
 
         return commentDTOList;
+    }
+
+    @GetMapping("/boardLike")
+    public @ResponseBody BoardDTO boardLike(@RequestParam("board_id")Long board_id ,@RequestParam("member_id")Long member_id){
+        System.out.println("board_id = " + board_id);
+        Map<String,Long>boardLike = new HashMap<>();
+        boardLike.put("board_id",board_id);
+        boardLike.put("member_id",member_id);
+        BoardDTO boardDTO =boardService.boardLike(boardLike);
+        return boardDTO;
+
+    }
+
+    @GetMapping("/likeDu")
+    public @ResponseBody String likeDu(@RequestParam("board_id")Long board_id ,@RequestParam("member_id")Long member_id){
+        Map<String,Long>boardLike = new HashMap<>();
+        boardLike.put("board_id",board_id);
+        boardLike.put("member_id",member_id);
+        System.out.println("board_id = " + board_id + ", member_id = " + member_id);
+        BoardlikeDTO boardlikeDTO = boardService.boardDu(boardLike);
+        System.out.println("결과값"+boardlikeDTO);
+        if (boardlikeDTO == null){
+            return "yes";
+        }else {
+            return "no";
+        }
     }
 
 
