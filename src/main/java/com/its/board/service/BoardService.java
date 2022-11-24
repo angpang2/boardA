@@ -20,9 +20,7 @@ public class BoardService {
 
 
     public void boardSave(BoardDTO boardDTO) throws IOException {
-        boardRepository.boardSave(boardDTO);
         if(!boardDTO.getBoardFile().isEmpty()) {
-
             MultipartFile boardFile = boardDTO.getBoardFile();
             String originalFileName = boardFile.getOriginalFilename();
             String storedFileName = System.currentTimeMillis() + "-" + originalFileName;

@@ -82,7 +82,7 @@
                         </svg>
                         <div class="numbers">
                             <a class="num1">${board.boardLike}</a>
-                            <a class="num2">${board.boardLike+1}</a>
+                            <a class="num2" id="num2"></a>
                         </div>
                     </label>
                     <c:if test="${board.boardSaveFile != null}">
@@ -175,8 +175,9 @@
             },
             dataType: "json",
             success:function (boardDTO){
+                let num2 = document.getElementById("num2")
+                num2.innerHTML = boardDTO.boardLike;
                 alert("성공")
-
 
 
             },

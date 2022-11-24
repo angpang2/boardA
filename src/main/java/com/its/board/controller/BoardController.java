@@ -104,6 +104,7 @@ public class BoardController {
         boardLike.put("board_id",board_id);
         boardLike.put("member_id",member_id);
         BoardDTO boardDTO =boardService.boardLike(boardLike);
+        System.out.println("결과값 boatdDTO"+boardDTO);
         return boardDTO;
 
     }
