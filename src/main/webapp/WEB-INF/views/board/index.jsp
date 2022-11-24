@@ -37,12 +37,12 @@
 
   <!-- 정렬기준 선택창 -->
   <div class="sort">
-    <select class="form-control">
+    <select name="selectView" onchange="selectView()" id="selectView" class="form-control">
       <option value="최신순">최신순</option>
       <option value="조회순">조회순</option>
     </select>
   </div>
-
+  
 
 
 
@@ -252,6 +252,16 @@
 
 </body>
 <script>
+  const selectView = () => {
+    
+  }
+
+
+
+
+
+
+
   const boardWrite = () => {
     if(${sessionScope.member.member_id != null}){
       location.href = "/boardWrite"

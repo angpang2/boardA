@@ -30,7 +30,7 @@
             <a class="navbar-brand" href="#">WebSiteName</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="/">Home</a></li>
             <li><a href="#">Page 1</a></li>
             <li><a href="#">Page 2</a></li>
             <li><a href="#">Page 3</a></li>
@@ -44,7 +44,7 @@
         <!-- 사이드바 -->
         <div class="list-group">
             <a href="#" class="list-group-item active">선택창</a>
-            <a href="#" class="list-group-item">메뉴1</a>
+            <a href="/index" class="list-group-item">메뉴1</a>
             <a href="#" class="list-group-item">메뉴2</a>
             <a href="#" class="list-group-item">메뉴3</a>
 
