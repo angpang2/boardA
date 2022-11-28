@@ -193,7 +193,7 @@
               <%-- 1페이지가 아닌 경우에는 [이전]을 클릭하면 현재 페이지보다 1 작은 페이지 요청 --%>
               <c:otherwise>
                 <li class="page-item">
-                  <a class="page-link" href="/index?page=${paging.page-1}&selectView=${boardDTO.selectView}">[이전]</a>
+                  <a class="page-link" href="/index?page=${paging.page-1}&selectView=${boardDTO.selectView}&q=${boardDTO.q}">[이전]</a>
                 </li>
               </c:otherwise>
             </c:choose>
@@ -210,7 +210,7 @@
 
                 <c:otherwise>
                   <li class="page-item">
-                    <a class="page-link" href="/index?page=${i}&selectView=${boardDTO.selectView}">${i}</a>
+                    <a class="page-link" href="/index?page=${i}&selectView=${boardDTO.selectView}&q=${boardDTO.q}">${i}</a>
                   </li>
                 </c:otherwise>
               </c:choose>
@@ -224,7 +224,7 @@
               </c:when>
               <c:otherwise>
                 <li class="page-item">
-                  <a class="page-link" href="/index?page=${paging.page+1}&selectView=${boardDTO.selectView}">[다음]</a>
+                  <a class="page-link" href="/index?page=${paging.page+1}&selectView=${boardDTO.selectView}&q=${boardDTO.q}">[다음]</a>
                 </li>
               </c:otherwise>
             </c:choose>
@@ -261,7 +261,7 @@
     const sel2 = document.getElementById("selectView");
     const selectView = sel2.options[sel2.selectedIndex].value;
 
-    location.href = "/searchList?searchType="+searchType+"&q="+q+"&selectView="+selectView;
+    location.href = "/index?searchType="+searchType+"&q="+q+"&selectView="+selectView;
 
   }
 

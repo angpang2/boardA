@@ -31,12 +31,25 @@ public class BoardController {
 
     @GetMapping("/index")
     public String index(@ModelAttribute BoardDTO boardDTO,Model model){
-        List<BoardDTO>boardDTOList = boardService.HomeList(boardDTO);
-        model.addAttribute("boardList",boardDTOList);
-        BoardDTO boardDTO1 = boardService.boardPage(boardDTO);
-        model.addAttribute("paging",boardDTO1);
-        model.addAttribute("boardDTO",boardDTO);
-        return "board/index";
+        if(!boardDTO.getQ().isEmpty()){
+            List<BoardDTO>boardDTOList = boardService.searchList(boardDTO);
+            model.addAttribute("boardList",boardDTOList);
+            BoardDTO boardDTO1 = boardService.searchListPage(boardDTO);
+            model.addAttribute("paging",boardDTO1);
+            model.addAttribute("boardDTO",boardDTO);
+            return "board/index";
+
+        }else {
+            List<BoardDTO>boardDTOList = boardService.HomeList(boardDTO);
+            model.addAttribute("boardList",boardDTOList);
+            BoardDTO boardDTO1 = boardService.boardPage(boardDTO);
+            model.addAttribute("paging",boardDTO1);
+            model.addAttribute("boardDTO",boardDTO);
+            return "board/index";
+
+        }
+
+
     }
 
     @GetMapping("/boardWrite")

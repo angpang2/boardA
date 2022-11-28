@@ -118,6 +118,11 @@ public class BoardService {
     }
 
     public List<BoardDTO> searchList(BoardDTO boardDTO) {
+        int page = boardDTO.getPage();
+        int start = (page-1)* boardDTO.getPAGE_LIMIT();
+        int limit = boardDTO.getPAGE_LIMIT();
+        boardDTO.setStart(start);
+        boardDTO.setPAGE_LIMIT(limit);
        return boardRepository.searchList(boardDTO);
 
     }

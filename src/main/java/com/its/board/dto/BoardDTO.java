@@ -37,7 +37,7 @@ public class BoardDTO {
 
     private String selectView = "board_id";//정렬기준
 
-    private String q;//검색어
+    private String q = "";
     private String searchType = "title";
 
 
