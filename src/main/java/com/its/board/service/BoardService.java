@@ -116,4 +116,28 @@ public class BoardService {
     public BoardlikeDTO boardDu(Map<String, Long> boardLike) {
         return boardRepository.likeDu(boardLike);
     }
+
+    public List<BoardDTO> searchList(BoardDTO boardDTO) {
+       return boardRepository.searchList(boardDTO);
+
+    }
+
+    public BoardDTO searchListPage(BoardDTO boardDTO) {
+        //전체 글 갯수 조회
+        int boardCount = boardRepository.searchCount(boardDTO);
+        //필요 페이지 계산
+        int maxPage = (int)(Math.ceil((double)boardCount / boardDTO.getPAGE_LIMIT()));
+        //시작 페이지 값 계산
+        int startPage = (((int)(Math.ceil((double) boardDTO.getPage() / boardDTO.getBLOCK_LIMIT()))) - 1) * boardDTO.getBLOCK_LIMIT() + 1;
+        //끝 페이지 값 계산
+        int endPage = startPage + boardDTO.getBLOCK_LIMIT() - 1;
+        if(endPage>maxPage){
+            endPage = maxPage;
+        }
+        boardDTO.setMaxPage(maxPage);
+        boardDTO.setEndPage(endPage);
+        boardDTO.setStartPage(startPage);
+        return boardDTO;
+
+    }
 }

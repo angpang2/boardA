@@ -4,6 +4,15 @@
 
 
 <mapper namespace="Board">
+    <select id="searchList" resultType="board" parameterType="board">
+        select * from board where ${searchType} like concat('%',#{q},'%') order by ${selectView} desc limit #{start} , #{PAGE_LIMIT}
+    </select>
+
+    <select id="searchCount" resultType="Integer" parameterType="board">
+        select count(board_id) from board where ${searchType} like concat('%',#{q},'%');
+    </select>
+
+
     <insert id="boardSave" parameterType="board" useGeneratedKeys="true" keyProperty="board_id">
         insert into board(writer,title,content,member_id,boardSaveFile)
         values (#{writer},#{title},#{content},#{member_id},#{boardSaveFile})
@@ -21,6 +30,7 @@
     <select id="boardCount" resultType="Integer">
         select count(board_id) from board;
     </select>
+
 
     <select id="boardDetail" parameterType="board" resultType="board">
         select * from board where board_id = #{board_id}

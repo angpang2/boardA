@@ -89,4 +89,12 @@ public class BoardRepository {
         System.out.println("result값 = " + result);
        return result;
     }
+
+    public List<BoardDTO> searchList(BoardDTO boardDTO) {
+        return sql.selectList("Board.searchList",boardDTO);
+    }
+
+    public int searchCount(BoardDTO boardDTO) {
+        return sql.selectOne("Board.searchCount",boardDTO);
+    }
 }

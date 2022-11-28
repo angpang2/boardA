@@ -35,7 +35,10 @@ public class BoardDTO {
     private int BLOCK_LIMIT = 5; //하단 블록
     private int start = 0; //  select * from board_table order by id desc limit #{start} , #{limit} 쿼리 작성시 start에 해당하는 값
 
-    private String selectView = "board_id";
+    private String selectView = "board_id";//정렬기준
+
+    private String q;//검색어
+    private String searchType = "title";
 
 
 }

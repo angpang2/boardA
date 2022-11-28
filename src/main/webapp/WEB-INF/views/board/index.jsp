@@ -25,12 +25,12 @@
     <!-- 부드스트랩 검색창 -->
     <form class="navbar-form navbar-left" role="search">
       <div class="form-group">
-        <select class="form-control">
-          <option value="제목">제목</option>
-          <option value="작성자">작성자</option>
+        <select class="form-control" id="searchType">
+          <option value="title">제목</option>
+          <option value="writer">작성자</option>
         </select>
-        <input type="text" class="form-control" placeholder="Search">
-        <input type="button" value="검색" class="form-control">
+        <input type="text" class="form-control" placeholder="Search" id="searchQ">
+        <input type="button" value="검색" class="form-control" onclick="searchList()">
       </div>
     </form>
   </div>
@@ -254,8 +254,20 @@
 
 </body>
 <script>
+  const searchList = () => {
+    const Type = document.getElementById("searchType")
+    const searchType = Type.options[Type.selectedIndex].value;
+    const q = document.getElementById("searchQ").value;
+    const sel2 = document.getElementById("selectView");
+    const selectView = sel2.options[sel2.selectedIndex].value;
+
+    location.href = "/searchList?searchType="+searchType+"&q="+q+"&selectView="+selectView;
+
+  }
+
+
+
   const selectView = () => {
-    console.log("선택호출")
     const sel2 = document.getElementById("selectView");
     const selectView = sel2.options[sel2.selectedIndex].value;
     location.href= "/index?selectView="+selectView;
