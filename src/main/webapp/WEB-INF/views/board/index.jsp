@@ -40,6 +40,8 @@
     <select name="selectView" onchange="selectView()" id="selectView" class="form-control">
       <option value="board_id" <c:if test="${boardDTO.selectView == 'board_id'}">selected="selected"</c:if> >최신순</option>
       <option value="hit"<c:if test="${boardDTO.selectView=='hit'}">selected="selected"</c:if>>조회순</option>
+      <option value="boardLike"<c:if test="${boardDTO.selectView=='boardLike'}">selected="selected"</c:if>>좋아요순</option>
+      <option value="commentCount"<c:if test="${boardDTO.selectView=='commentCount'}">selected="selected"</c:if>>댓글순</option>
     </select>
   </div>
   
