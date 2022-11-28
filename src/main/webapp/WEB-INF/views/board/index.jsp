@@ -29,7 +29,7 @@
           <option value="title">제목</option>
           <option value="writer">작성자</option>
         </select>
-        <input type="text" class="form-control" placeholder="Search" id="searchQ">
+        <input type="text" class="form-control" placeholder="Search" id="searchQ" value="${boardDTO.q}">
         <input type="button" value="검색" class="form-control" onclick="searchList()">
       </div>
     </form>
@@ -268,9 +268,10 @@
 
 
   const selectView = () => {
+    const q = document.getElementById("searchQ").value;
     const sel2 = document.getElementById("selectView");
     const selectView = sel2.options[sel2.selectedIndex].value;
-    location.href= "/index?selectView="+selectView;
+    location.href= "/index?selectView="+selectView+"&q="+q;
   }
 
 
