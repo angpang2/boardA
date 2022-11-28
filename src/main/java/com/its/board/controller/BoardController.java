@@ -17,6 +17,8 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
+
+
     @GetMapping("/searchList")
     public String searchList(@ModelAttribute BoardDTO boardDTO,Model model){
         List<BoardDTO>boardDTOList = boardService.searchList(boardDTO);
@@ -91,7 +93,7 @@ public class BoardController {
         return "redirect:/index";
     }
 
-    @GetMapping("/board/delete")
+    @GetMapping("/boardDelete")
     public String boardDelete(@RequestParam("board_id")Long board_id){
         System.out.println("board_id = " + board_id);
         boardService.boardDelete(board_id);

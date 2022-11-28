@@ -77,6 +77,18 @@
         select * from boardLike where board_id = #{board_id} and member_id = #{member_id}
     </select>
 
+    <select id="HomeList2" resultType="board">
+        select * from board order by hit desc  limit 0 , 3;
+    </select>
+
+    <select id="HomeList3" resultType="board">
+        select * from board order by boardLike desc  limit 0 , 3;
+    </select>
+
+    <select id="HomeList4" resultType="board">
+        select * from board order by commentCount desc  limit 0 , 3;
+    </select>
+
 
 
 

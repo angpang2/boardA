@@ -124,6 +124,16 @@
 
 </body>
 <script>
+    const boardDelete = () => {
+
+     if ( confirm("정말삭제하시겠습니까?")==true){
+         location.href = "/boardDelete?board_id="+${board.board_id};
+     }else {
+         alert("삭제 취소")
+     }
+    }
+
+
     const boardLike = () => {
         if(${sessionScope.member.member_id==null}){
             console.log("호출")

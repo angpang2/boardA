@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -17,7 +18,94 @@
 
 </div>
 
-<div class="main">
+    <div class="main">
+        <!-- 게시판 최신글 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">게시판</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>조회수 BEST 3</th>
+                    </tr>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성일</th>
+                        <th>조회수</th>
+                    </tr>
+                    </thead>
+                    <tbody style="text-align: center">
+                    <c:forEach items="${boardList}" var="board">
+                        <tr>
+                            <td>${board.board_id}</td>
+                            <td><a href="/boardDetail?board_id=${board.board_id}">${board.title}[${board.commentCount}]</a></td>
+                            <td>${board.writer}</td>
+                            <td>${board.regdate}</td>
+                            <td>${board.hit}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+
+                <table class="table table-hover">
+                    <thead>
+                    <th>좋아요 BEST 3</th>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성일</th>
+                        <th>조회수</th>
+                    </tr>
+                    </thead>
+                    <tbody style="text-align: center">
+                    <c:forEach items="${boardList2}" var="board2">
+                        <tr>
+                            <td>${board2.board_id}</td>
+                            <td><a href="/boardDetail?board_id=${board2.board_id}">${board2.title}[${board2.commentCount}]</a></td>
+                            <td>${board2.writer}</td>
+                            <td>${board2.regdate}</td>
+                            <td>${board2.hit}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+
+
+                <table class="table table-hover">
+                    <thead>
+                    <th>댓글 BEST 3</th>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성일</th>
+                        <th>조회수</th>
+                    </tr>
+                    </thead>
+                    <tbody style="text-align: center">
+                    <c:forEach items="${boardList3}" var="board3">
+                        <tr>
+                            <td>${board3.board_id}</td>
+                            <td><a href="/boardDetail?board_id=${board3.board_id}">${board3.title}[${board3.commentCount}]</a></td>
+                            <td>${board3.writer}</td>
+                            <td>${board3.regdate}</td>
+                            <td>${board3.hit}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+        </div>
+    </div>
 
 </div>
 

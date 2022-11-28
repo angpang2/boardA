@@ -145,4 +145,16 @@ public class BoardService {
         return boardDTO;
 
     }
+
+    public List<BoardDTO> HomeList2(BoardDTO boardDTO) {
+       return boardRepository.HomeList2();
+    }
+
+    public List<BoardDTO> HomeList3(BoardDTO boardDTO) {
+        return boardRepository.HomeList3();
+    }
+
+    public List<BoardDTO> HomeList4(BoardDTO boardDTO) {
+        return boardRepository.HomeList4();
+    }
 }

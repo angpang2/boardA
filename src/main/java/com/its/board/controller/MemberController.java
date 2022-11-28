@@ -21,7 +21,7 @@ public class MemberController {
     public String memberJoin(@ModelAttribute MemberDTO memberDTO) throws IOException {
         System.out.println("memberDTO = " + memberDTO);
         memberService.memberJoin(memberDTO);
-        return "board/index";
+        return "redirect:/";
     }
 
     @GetMapping("/id_check")
@@ -54,7 +54,7 @@ public class MemberController {
     @GetMapping("logout")
     public String logout(HttpSession session){
         session.invalidate();
-        return "board/index";
+        return "redirect:/";
     }
 
     @GetMapping("mypage")
@@ -68,7 +68,7 @@ public class MemberController {
         memberService.update(memberDTO);
         session.invalidate();
 
-        return "board/index";
+        return "redirect:/";
     }
 
 
