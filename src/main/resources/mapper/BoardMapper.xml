@@ -15,7 +15,7 @@
     </insert>
 
     <select id="boardList" resultType="board" parameterType="board">
-        select *from board order by board_id desc limit #{start} , #{PAGE_LIMIT}
+        select *from board order by ${selectView} desc limit #{start} , #{PAGE_LIMIT}
     </select>
 
     <select id="boardCount" resultType="Integer">

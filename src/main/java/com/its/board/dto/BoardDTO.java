@@ -34,4 +34,8 @@ public class BoardDTO {
     private int PAGE_LIMIT = 5; //표시페이지
     private int BLOCK_LIMIT = 5; //하단 블록
     private int start = 0; //  select * from board_table order by id desc limit #{start} , #{limit} 쿼리 작성시 start에 해당하는 값
+
+    private String selectView = "board_id";
+
+
 }

@@ -16,12 +16,17 @@ import java.util.Map;
 public class BoardController {
     @Autowired
     private BoardService boardService;
+
+
+
     @GetMapping("/index")
     public String index(@ModelAttribute BoardDTO boardDTO,Model model){
         List<BoardDTO>boardDTOList = boardService.HomeList(boardDTO);
         model.addAttribute("boardList",boardDTOList);
         BoardDTO boardDTO1 = boardService.boardPage(boardDTO);
         model.addAttribute("paging",boardDTO1);
+        model.addAttribute("boardDTO",boardDTO);
+        System.out.println("리턴리스트 = " + boardDTOList);
         return "board/index";
     }
     @GetMapping("/boardWrite")

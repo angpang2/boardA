@@ -38,8 +38,8 @@
   <!-- 정렬기준 선택창 -->
   <div class="sort">
     <select name="selectView" onchange="selectView()" id="selectView" class="form-control">
-      <option value="최신순">최신순</option>
-      <option value="조회순">조회순</option>
+      <option value="board_id" <c:if test="${boardDTO.selectView == 'board_id'}">selected="selected"</c:if> >최신순</option>
+      <option value="hit"<c:if test="${boardDTO.selectView=='hit'}">selected="selected"</c:if>>조회순</option>
     </select>
   </div>
   
@@ -191,7 +191,7 @@
               <%-- 1페이지가 아닌 경우에는 [이전]을 클릭하면 현재 페이지보다 1 작은 페이지 요청 --%>
               <c:otherwise>
                 <li class="page-item">
-                  <a class="page-link" href="/index?page=${paging.page-1}">[이전]</a>
+                  <a class="page-link" href="/index?page=${paging.page-1}&selectView=${boardDTO.selectView}">[이전]</a>
                 </li>
               </c:otherwise>
             </c:choose>
@@ -208,7 +208,7 @@
 
                 <c:otherwise>
                   <li class="page-item">
-                    <a class="page-link" href="/index?page=${i}">${i}</a>
+                    <a class="page-link" href="/index?page=${i}&selectView=${boardDTO.selectView}">${i}</a>
                   </li>
                 </c:otherwise>
               </c:choose>
@@ -222,7 +222,7 @@
               </c:when>
               <c:otherwise>
                 <li class="page-item">
-                  <a class="page-link" href="/index?page=${paging.page+1}">[다음]</a>
+                  <a class="page-link" href="/index?page=${paging.page+1}&selectView=${boardDTO.selectView}">[다음]</a>
                 </li>
               </c:otherwise>
             </c:choose>
@@ -253,7 +253,10 @@
 </body>
 <script>
   const selectView = () => {
-    
+    console.log("선택호출")
+    const sel2 = document.getElementById("selectView");
+    const selectView = sel2.options[sel2.selectedIndex].value;
+    location.href= "/index?selectView="+selectView;
   }
 
 
